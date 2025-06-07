@@ -95,6 +95,39 @@ public class User
         }
     }
 
+  public bool Likepost(int postId)
+    {
+        if (Posts != null)
+        {
+            foreach (var post in Posts)
+            {
+                if (post.Id == postId)
+                {
+                    post.AddLike();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool Viewpost(int postId)
+    {
+        if (Posts != null)
+        {
+            foreach (var post in Posts)
+            {
+                if (post.Id == postId)
+                {
+                    post.AddView();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     public override string ToString() => @$"
 Fullname: {Name} {Surname}, 
 Age: {Age}, 
