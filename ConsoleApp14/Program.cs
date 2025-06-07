@@ -10,7 +10,7 @@ using System.Collections.Generic;
     {
         new User(1, "Ayla", "Esgerova", 25, "aylaesgerova@gmail.com", "ayla1234"),
         new User(2, "Orxan", "Aliyev", 30, "orxanaliyev@gmail.com", "orxan1234"),
-        new User(3, "Sara", "Agayeva", 22, "saragayeva@gmail.com", "sara1234"),
+        new User(3, "Sara", "Agayeva", 22, "saraagayeva@gmail.com", "sara1234"),
         new User(4, "Vaqif", "Suleymanli", 30, "vaqifsuleymanli@gmail.com", "vaqif1234"),
         new User(5, "Nergiz", "Ehmedova", 30, "nergizehmedova@gmail.com", "nergiz1234"),
     };
@@ -98,7 +98,7 @@ System.Console.WriteLine();
 
                 else if (adminChoice == 3)
                 {
-                    Console.WriteLine("Enter post id ehich you want to view:");
+                    Console.WriteLine("Enter post id which you want to view:");
                     if (int.TryParse(Console.ReadLine(), out int ViewId))
                     {
                         if (admin.AddViewToPost(ViewId))
@@ -132,7 +132,7 @@ System.Console.WriteLine();
 
     else if (choice == 2)
     {
-        System.Console.WriteLine("Enter yoyr mai: ");
+        System.Console.WriteLine("Enter your mail: ");
         string email = Console.ReadLine()!;
         System.Console.WriteLine("Enter your password: ");
         string password = Console.ReadLine()!;
@@ -158,7 +158,7 @@ System.Console.WriteLine();
 1.View all posts
 2.Add like to post
 3.Addview to post
-4Exit from user page");
+4.Exit from user page");
                 System.Console.WriteLine();
                 bool isParsed3 = int.TryParse(Console.ReadLine(), out int userChoice);
                 if (!isParsed3)
@@ -175,7 +175,44 @@ System.Console.WriteLine();
 
                 else if (userChoice == 2)
                 {
-                    
+                    System.Console.WriteLine("Enter post id which you want to like");
+                    if (int.TryParse(Console.ReadLine(), out int likeid))
+                    {
+                        if (FindUser.Likepost(likeid))
+                        {
+                            System.Console.WriteLine("Like added successfully");
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Post not found");
+                        }
+                    }
+                }
+
+
+                else if (userChoice == 3)
+                {
+                    System.Console.WriteLine("Enter post id which you want to view");
+                    if (int.TryParse(Console.ReadLine(), out int viewid))
+                    {
+                        if (FindUser.Viewpost(viewid))
+                        {
+                            System.Console.WriteLine("View added successfully");
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Post not found");
+                        }
+                    }
+                }
+                else if (choice == 4)
+                {
+                    System.Console.WriteLine("Logging out from user page..");
+                    break;
+                }
+                else
+                {
+                    System.Console.WriteLine("This choice does not exist..");
                 }
 
             }
@@ -189,11 +226,11 @@ System.Console.WriteLine();
     }
     else if (choice == 3)
     {
-        System.Console.WriteLine("exit from page");
+        System.Console.WriteLine("Exit from system");
         break;
     }
     else
     {
         System.Console.WriteLine("This choice does not exist..");
     }
-}﻿
+}
