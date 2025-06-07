@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace AdminNamespace;
 
@@ -17,8 +17,8 @@ public class Admin
         Username = username;
         Email = email;
         Password = password;
-        posts = posts;
-        notifications = notifications;
+        Posts = posts;
+        Notifications = notifications;
     }
 
     public Admin() { }
@@ -33,6 +33,69 @@ public class Admin
         {
             return false;
         }
+    }
+
+    public void AddNotification(NotificationNamespace.Notification notification)
+    {
+        Notifications.Add(notification);
+    }
+
+    public void AddPost(PostNamespace.Post post)
+    {
+        Posts.Add(post);
+    }
+
+    public void ShowAllPosts()
+    {
+        if (Posts == null || Posts.Count == 0)
+        {
+            System.Console.WriteLine("No posts available..");
+            return;
+        }
+
+        foreach (var post in Posts)
+        {
+            System.Console.WriteLine($"Post ID: {post.Id}");
+            System.Console.WriteLine($"Post content:{post.Content}");
+            System.Console.WriteLine($"Post creation date: {post.Creationdate}");
+            System.Console.WriteLine($"Post Like count: {post.LikeCount}");
+            System.Console.WriteLine($"Post View count: {post.ViewCount}");
+
+
+            System.Console.WriteLine("---------------------------");
+        }
+    }
+
+    public bool AddLikeToPost(int postId)
+    {
+        if (Posts != null)
+        {
+            foreach (var post in Posts)
+            {
+                if (post.Id == postId)
+                {
+                    post.AddLike();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool AddViewToPost(int postId)
+    {
+        if (Posts != null)
+        {
+            foreach (var post in Posts)
+            {
+                if (post.Id == postId)
+                {
+                    post.AddView();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
