@@ -1,30 +1,18 @@
-﻿using System;
+using System;
 
 namespace UserNamespace;
 
 public class User
 {
-    private int id;
+    public int Id { get; set; }
+
     private int age;
     private string email;
     private string password;
-    public int Id
-    {
-        get { return id; }
-        set
-        {
-            if (value > 0 && value.ToString().Length == 6)
-            {
-                id = value;
-            }
-            else
-            {
-                throw new ArgumentException("Id is not true..");
-            }
-        }
-    }
+
     public string Name { get; set; }
     public string Surname { get; set; }
+    public List<PostNamespace.Post> Posts { get; set; } = new List<PostNamespace.Post>();
 
     public int Age
     {
@@ -85,4 +73,33 @@ public class User
         Email = email;
         Password = password;
     }
+
+    public void ViewAllPosts()
+    {
+        if (Posts == null || Posts.Count == 0)
+        {
+            System.Console.WriteLine("No posts available..");
+            return;
+        }
+
+        foreach (var post in Posts)
+        {
+            System.Console.WriteLine($"Post ID: {post.Id}");
+            System.Console.WriteLine($"Post content:{post.Content}");
+            System.Console.WriteLine($"Post creation date: {post.Creationdate}");
+            System.Console.WriteLine($"Post Like count: {post.LikeCount}");
+            System.Console.WriteLine($"Post View count: {post.ViewCount}");
+
+
+            System.Console.WriteLine("---------------------------");
+        }
+    }
+
+    public override string ToString() => @$"
+Fullname: {Name} {Surname}, 
+Age: {Age}, 
+Email: {Email}";
+
+
+
 }
