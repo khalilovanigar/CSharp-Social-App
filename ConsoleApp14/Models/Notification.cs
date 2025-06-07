@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace NotificationNamespace;
 
@@ -9,9 +9,9 @@ public class Notification
     public DateTime CreationDatetime { get; set; }
     public string FromUser { get; set; }
 
-    public Notification(string id, string text, string fromuser)
+    public Notification(int id,string text, string fromuser)
     {
-        //Id = id;
+        Id = id;
         Text = text;
         CreationDatetime = DateTime.Now;
         FromUser = fromuser;
@@ -19,7 +19,7 @@ public class Notification
 
     public Notification()
     {
-
+        
     }
 
 }
